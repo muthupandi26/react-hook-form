@@ -169,7 +169,11 @@ const Form = () => {
                     {...register(`phNumbers.${index}.number` as const)}
                   />
                   {index > 0 && (
-                    <button type="button" onClick={() => remove(index)}>
+                    <button
+                      style={{ marginTop: "10px" }}
+                      type="button"
+                      onClick={() => remove(index)}
+                    >
                       Remove
                     </button>
                   )}

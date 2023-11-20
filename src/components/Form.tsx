@@ -16,6 +16,8 @@ type FormValues = {
   phNumbers: {
     number: String;
   }[];
+  age: number;
+  dob: Date;
 };
 
 const Form = () => {
@@ -30,9 +32,12 @@ const Form = () => {
       },
       phoneNumbers: ["", ""],
       phNumbers: [{ number: "" }],
+      age: 0,
+      dob: new Date(),
     },
   });
-  const { register, control, handleSubmit, formState } = form;
+  const { register, control, handleSubmit, formState, getValues, setValue } =
+    form;
   const { errors } = formState;
 
   const { fields, append, remove } = useFieldArray({
@@ -42,6 +47,18 @@ const Form = () => {
 
   const onSubmit = (data: FormValues) => {
     console.log("form values", data);
+  };
+
+  const handleGetValue = () => {
+    console.log(getValues(), "getValues");
+  };
+
+  const handleSetValue = () => {
+    setValue("username", "", {
+      shouldValidate: true,
+      shouldDirty: true,
+      shouldTouch: true,
+    });
   };
 
   renderCount++;
@@ -187,7 +204,45 @@ const Form = () => {
           </div>
         </div>
 
+        <div className="form-control">
+          <label htmlFor="age">Age</label>
+          <input
+            type="number"
+            id="age"
+            {...register("age", {
+              valueAsNumber: true,
+              required: {
+                value: true,
+                message: "Age is required",
+              },
+            })}
+          />
+          <p className="error">{errors.age?.message}</p>
+        </div>
+
+        <div className="form-control">
+          <label htmlFor="dob">Date of Birth</label>
+          <input
+            type="date"
+            id="dob"
+            {...register("dob", {
+              valueAsDate: true,
+              required: {
+                value: true,
+                message: "date of birth is required",
+              },
+            })}
+          />
+          <p className="error">{errors.dob?.message}</p>
+        </div>
+
         <button style={{ marginTop: "10px" }}>submit</button>
+        <button type="button" onClick={handleGetValue}>
+          Get Values
+        </button>
+        <button type="button" onClick={handleSetValue}>
+          Set Value
+        </button>
       </form>
       <DevTool control={control} />
     </div>

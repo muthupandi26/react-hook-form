@@ -36,9 +36,18 @@ const Form = () => {
       dob: new Date(),
     },
   });
-  const { register, control, handleSubmit, formState, getValues, setValue } =
-    form;
-  const { errors } = formState;
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState,
+    getValues,
+    setValue,
+    trigger,
+  } = form;
+  const { errors, isDirty, isValid } = formState;
+
+  console.log(isDirty, isValid, "isValid");
 
   const { fields, append, remove } = useFieldArray({
     name: "phNumbers",
@@ -236,12 +245,23 @@ const Form = () => {
           <p className="error">{errors.dob?.message}</p>
         </div>
 
-        <button style={{ marginTop: "10px" }}>submit</button>
+        <button disabled={!isDirty || !isValid} style={{ marginTop: "10px" }}>
+          submit
+        </button>
         <button type="button" onClick={handleGetValue}>
           Get Values
         </button>
         <button type="button" onClick={handleSetValue}>
           Set Value
+        </button>
+
+        <button
+          type="button"
+          onClick={() => {
+            trigger();
+          }}
+        >
+          Validate
         </button>
       </form>
       <DevTool control={control} />

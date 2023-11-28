@@ -5,6 +5,10 @@ function Todos() {
   const todos = useSelector((state: any) => state.todos);
   console.log(todos, "todos");
 
+  const todoState = useSelector((state: any) => state.todoState);
+
+  console.log(todoState, "todoState");
+
   return (
     <>
       Todos

@@ -2,10 +2,12 @@ import { createSlice, nanoid } from "@reduxjs/toolkit";
 
 interface AppState {
   todos: any[];
+  todoState: boolean;
 }
 
 const initialState: AppState = {
   todos: [{ id: 1, text: "hello" }],
+  todoState: true,
 };
 
 export const todoSlice = createSlice({

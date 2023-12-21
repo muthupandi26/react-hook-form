@@ -8,6 +8,7 @@ import AddTodo from "./components/AddTodo.tsx";
 import { store } from "./app/store.ts";
 import Todos from "./components/Todos.tsx";
 import Carousel from "./components/Carousel/Carousel.tsx";
+import ParentComponent from "./components/usecallback/ParentComponent.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -17,7 +18,8 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         {/* <MuiFormLogin /> */}
         {/* <Todos />
         <AddTodo /> */}
-        <Carousel />
+        {/* <Carousel /> */} {/* custom carousel */}
+        <ParentComponent />
       </>
     </Provider>
   </React.StrictMode>
